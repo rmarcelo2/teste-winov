@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: winovk8s
+  labels:
+    app: winovk8s-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: winovk8s-app
+  template:
+    metadata:
+      labels:
+        app: winovk8s-app
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:stable-perl
+        ports:
+        - containerPort: 80
+      - name: consul
+        image: consul:1.15
+        ports:
+        - containerPort: 8500
